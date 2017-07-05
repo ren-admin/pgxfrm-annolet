@@ -430,7 +430,6 @@ function convertNumsys(){
     var parent = $(window.getSelection().focusNode.parentElement);
     var oldHtml = parent.html();
     var newHtml = oldHtml.replace(number, "<span class='highlight' style='color:green'>"+converted_num+"</span>");
-    alert(newHtml);
     parent.html( newHtml );
 }
 
