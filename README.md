@@ -6,7 +6,7 @@ To run the following renarrations on a web page:
   - https://github.com/ren-admin/pagexform-bookmarklet/tree/master/webservices
   
 - Run setup.sh file
-  - command to run setup.sh file "bash setup.sh"
+  - command to run setup.sh file =bash setup.sh=
 - Activate virtual environment
   - command to activate "source ./flask/bin/activate"
 - Run the webservice
