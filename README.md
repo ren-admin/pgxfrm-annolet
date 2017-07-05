@@ -1,2 +1,2 @@
 # bookmarklet
-[[Here][https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/c7cd1707/pagexform-annolet.html]] is the link to run the pagexform-bookmarklet
+To run the pagexform-bookmarklet on web page go to this link https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/c7cd1707/pagexform-annolet.html
