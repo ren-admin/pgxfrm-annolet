@@ -3,7 +3,7 @@ To run the pagexform-bookmarklet on web pages go to this link https://cdn.rawgit
 
 To run the following renarrations on a web page:
 - Go to the following directory:
-  -cd webservices
+  - cd webservices
   
 - Run setup.sh file
   - command to run setup.sh file "bash setup.sh"
