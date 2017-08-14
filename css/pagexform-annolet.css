@@ -28,6 +28,8 @@ body{
     white-space: nowrap !important;
     font-family: monospace !important; 
     font-weight: bold !important;
+    display: inline-block;
+    text-align: center;
 }
 
 .annolet-menu-item{
