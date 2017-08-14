@@ -10,7 +10,7 @@ function annoletContainer(){
     var linktag = document.createElement('link');
     linktag.rel = "stylesheet";
     linktag.type = "text/css";
-    linktag.href = "https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/eea1844b/css/pagexform-annolet.css"; 
+    linktag.href = "https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/5789c576/css/pagexform-annolet.css"; 
     document.getElementsByTagName('head')[0].appendChild(linktag);
 
     //injecting html code
@@ -170,7 +170,7 @@ function disableLinks(){
 function disableCss(){
     var styleSheets = document.styleSheets;
     for ( var i=0; i<styleSheets.length; i++) {
-        if(styleSheets[i].href == "https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/eea1844b/css/pagexform-annolet.css"){
+        if(styleSheets[i].href == "https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/5789c576/css/pagexform-annolet.css"){
            styleSheets[i].disabled = false;
         }
         else{
