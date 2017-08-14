@@ -1,5 +1,5 @@
 # bookmarklet
-To run the pagexform-bookmarklet on web pages go to this link https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/c7cd1707/pagexform-annolet.html
+To run the pagexform-bookmarklet on web pages go to this link https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/bb0de764/pagexform-annolet.html
 
 To run the following renarrations on a web page:
 - Go to the following directory:
