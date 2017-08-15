@@ -3,7 +3,7 @@ body{
 }
 
 #annolet-container{
-    background-color: #2b849c !important;
+    background-color: #8ea0a5 !important;
     bottom: 0 !important;
     width: 100% !important;
     border-radius: 31px 31px 0px 0px !important;
@@ -14,7 +14,7 @@ body{
 
 #annolet-header{
     text-align:center !important;
-    color: white !important;
+    color: #0d0000 !important;
     font-weight: bold !important;
     font-family: monospace !important;
 }
@@ -28,8 +28,8 @@ body{
     white-space: nowrap !important;
     font-family: monospace !important; 
     font-weight: bold !important;
-    display: inline-block;
-    text-align: center;
+    display: inline-block !important;
+    text-align: center !important;
 }
 
 .annolet-menu-item{
