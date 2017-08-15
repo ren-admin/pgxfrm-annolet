@@ -1,4 +1,4 @@
-// Function to create a annolet container 
+
 function annoletContainer(){
     //appending a div(annolet container) to body element of a webpage.
     var body = document.getElementsByTagName('body')[0];
@@ -52,39 +52,6 @@ function annoletContainer(){
     "</ul>";
 }
 
-//Function which annotates tags around the selected content on a webpage.
-function annotateTag(clickedCategory){
-    if(clickedCategory == 'qa'){
-        var selected_tag = document.getElementById('select-qa-category').value;
-        createCustomtag()
-    }
-    else if(clickedCategory == 'product'){
-        var selected_tag = document.getElementById('select-product-category').value;
-        createCustomtag()
-    }
-    else if(clickedCategory == 'number'){
-        var selected_tag = document.getElementById('select-number-category').value;
-        createCustomtag()
-    }
-    function createCustomtag(){
-        var custom_tag = document.createElement(selected_tag);
-        if(window.getSelection){
-            var userSelection = window.getSelection()
-            var userSelection_text = userSelection.toString();
-            custom_tag.textContent = userSelection_text;
-        }
-        else if (document.selection && document.selection.type != "Control") {
-            var userSelection = document.selection.createRange().text;
-            custom_tag.textContent = userSelection;
-        }      
-        custom_tag.style.color = "green";
-        var range = userSelection.getRangeAt(0);
-        range.deleteContents();
-        range.insertNode(custom_tag);
-    }
-}
-
-// Function to add click events to the annolet elements.
 function addClickevents(){
     document.getElementById('qa-category').addEventListener('click', function() {
         var category = 'qa';
@@ -109,4 +76,3 @@ window.onload = function() {
     annoletContainer()
     addClickevents()
 };
-    
