@@ -8,7 +8,7 @@
 #+LATEX: Literal LaTeX code for export
 
 * Function =annoletContainer()= to create a annolet container
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function annoletContainer(){
     //appending a div(annolet container) to body element of a webpage.
@@ -21,7 +21,7 @@ function annoletContainer(){
     var linktag = document.createElement('link');
     linktag.rel = "stylesheet";
     linktag.type = "text/css";
-    linktag.href = "https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/5789c576/css/pagexform-annolet.css"; 
+    linktag.href = "https://cdn.rawgit.com/ren-admin/pgxfrm-bookmarklet/5789c576/css/pgxfrm-annolet.css"; 
     document.getElementsByTagName('head')[0].appendChild(linktag);
 
     //injecting html code
@@ -140,7 +140,7 @@ function annoletContainer(){
 
 * Function =disableLinks()= to disable all links on a webpage.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function disableLinks(){
     // Disable all links
@@ -155,12 +155,12 @@ function disableLinks(){
 
 * Function =disableCss()= disable the css of a web page.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function disableCss(){
     var styleSheets = document.styleSheets;
     for ( var i=0; i<styleSheets.length; i++) {
-        if(styleSheets[i].href == "https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/5789c576/css/pagexform-annolet.css"){
+        if(styleSheets[i].href == "https://cdn.rawgit.com/ren-admin/pgxfrm-bookmarklet/5789c576/css/pgxfrm-annolet.css"){
            styleSheets[i].disabled = false;
         }
         else{
@@ -173,8 +173,8 @@ function disableCss(){
 
 
 * Function =ZapPer()= to erase the unwanted content on a webpage.
-
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+  
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function  Zapper(){
     alert("Remove the content by clicking anywhere on the document");
@@ -196,7 +196,7 @@ function  Zapper(){
 
 * Function =modifyContent()= to modify the content on a web page.
   
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function modifyContent() {
     // sets attributes to all the elements in the web page.
@@ -209,7 +209,7 @@ function modifyContent() {
 
 * Function =highlightContent()= to highlight selected text on a web page.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function highlightContent() {
     var userSelection = window.getSelection();
@@ -223,7 +223,7 @@ function highlightContent() {
 
 * Function =highlightRange(range)= for highlighting the selected text.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function highlightRange(range) {
     var newNode = document.createElement("span");
@@ -239,7 +239,7 @@ function highlightRange(range) {
 
 * Function =phoneticsTrans()= to translate the selected text to phonetics.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function phoneticsTrans(){
     var url = "//localhost:5000/phonetic-trans"
@@ -271,7 +271,7 @@ function phoneticsTrans(){
 
 * Function =translateText()= to translate the selected text to an other language.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function translateText(){
     if (window.getSelection) 
@@ -307,15 +307,15 @@ function translateText(){
 
 * Function =alternateStylesheets()= to create alternate stylesheets, which will be used to change the theme of a web page.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function alternateStylesheets(){
     //appending a CSS alternate stylesheets to head element of a webpage.
     var i= 0;
     var style_sheets = 3; 
-    var css_themes =["https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/eea1844b/css/switch1.css", 
-    "https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/eea1844b/css/switch2.css", 
-    "https://cdn.rawgit.com/ren-admin/pagexform-bookmarklet/eea1844b/css/switch3.css"];
+    var css_themes =["https://cdn.rawgit.com/ren-admin/pgxfrm-bookmarklet/eea1844b/css/switch1.css", 
+    "https://cdn.rawgit.com/ren-admin/pgxfrm-bookmarklet/eea1844b/css/switch2.css", 
+    "https://cdn.rawgit.com/ren-admin/pgxfrm-bookmarklet/eea1844b/css/switch3.css"];
     var link_title =['switch1', 'switch2', 'switch3'];
 
     for(i=0; i<style_sheets; i++){
@@ -336,7 +336,7 @@ function alternateStylesheets(){
 
 * Function =switchStyle(css_title)= to switch the theme of a web page.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function switchStyle(css_title)
 {   
@@ -357,7 +357,7 @@ function switchStyle(css_title)
 
 * Function =showContent()= to display the selected content on the web page and rest of the content is made hidden.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function showContent(){
     var all = document.getElementsByTagName("*");
@@ -411,7 +411,7 @@ function showContent(){
 
 * Function =changeFont()= to increase/decrease the font size of the content.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function changeFont(){
     var fontSize = parseInt($('body').css('font-size'),10);
@@ -431,7 +431,7 @@ function changeFont(){
 
 * Function =convertCurrency()= to convert the currency
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
  
 function convertCurrency(){
     if (window.getSelection) 
@@ -474,7 +474,7 @@ function convertCurrency(){
 
 * Function =changeMeasurement()= to convert units of measurements
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function changeMeasurement() {
    if (window.getSelection) 
@@ -516,7 +516,7 @@ function changeMeasurement() {
 
 * Function =convertNumsys()= to convert the number in preferred number system.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function convertNumsys(){
     var selected_numsys = document.getElementById("select-num-sys").value;
@@ -543,7 +543,7 @@ function convertNumsys(){
 
 * Function =formatDate()= to format the date as per the preferred country.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function formatDate(){
     var selected_format = document.getElementById("select-date-format").value;
@@ -567,13 +567,9 @@ function formatDate(){
 #+END_SRC
 
 
-
-
-
-
 * Function =addClickevents()= to add click events to the annolet elements.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function addClickevents(){
     document.getElementById('disable-css').addEventListener('click', function() {
@@ -622,7 +618,7 @@ function addClickevents(){
 
 * Function to invoke the following functions when the page loads.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 window.onload = function() {
     annoletContainer()
