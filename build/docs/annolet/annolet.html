@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Annolet for page transformation</title>
+<!-- 2017-08-15 Tue 16:27 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="VLEAD" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style/css/worg-style.css" />
+<link rel="stylesheet" type="text/css" href="../style/css/override.css" />
+<link rel="icon" type="image/png" href="../style/img/favicon/popl.png" />
+<script type="text/javascript" src="../style/js/org-info.js">
+/**
+ *
+ * @source: ../style/js/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in ../style/js/org-info.js.
+ *
+ * Copyright (C) 2012-2013 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in ../style/js/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "1");
+org_html_manager.set("LINK_HOME", "../index.html");
+org_html_manager.set("LINK_UP", "../index.html");
+org_html_manager.set("LOCAL_TOC", "1");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "info");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="../index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">Annolet for page transformation</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Function <code>annoletContainer()</code> to create a annolet container</a></li>
+<li><a href="#sec-2">2. Function <code>disableLinks()</code> to disable all links on a webpage.</a></li>
+<li><a href="#sec-3">3. Function <code>disableCss()</code> disable the css of a web page.</a></li>
+<li><a href="#sec-4">4. Function <code>ZapPer()</code> to erase the unwanted content on a webpage.</a></li>
+<li><a href="#sec-5">5. Function <code>modifyContent()</code> to modify the content on a web page.</a></li>
+<li><a href="#sec-6">6. Function <code>highlightContent()</code> to highlight selected text on a web page.</a></li>
+<li><a href="#sec-7">7. Function <code>highlightRange(range)</code> for highlighting the selected text.</a></li>
+<li><a href="#sec-8">8. Function <code>phoneticsTrans()</code> to translate the selected text to phonetics.</a></li>
+<li><a href="#sec-9">9. Function <code>translateText()</code> to translate the selected text to an other language.</a></li>
+<li><a href="#sec-10">10. Function <code>alternateStylesheets()</code> to create alternate stylesheets, which will be used to change the theme of a web page.</a></li>
+<li><a href="#sec-11">11. Function <code>switchStyle(css_title)</code> to switch the theme of a web page.</a></li>
+<li><a href="#sec-12">12. Function <code>showContent()</code> to display the selected content on the web page and rest of the content is made hidden.</a></li>
+<li><a href="#sec-13">13. Function <code>changeFont()</code> to increase/decrease the font size of the content.</a></li>
+<li><a href="#sec-14">14. Function <code>convertCurrency()</code> to convert the currency</a></li>
+<li><a href="#sec-15">15. Function <code>changeMeasurement()</code> to convert units of measurements</a></li>
+<li><a href="#sec-16">16. Function <code>convertNumsys()</code> to convert the number in preferred number system.</a></li>
+<li><a href="#sec-17">17. Function <code>formatDate()</code> to format the date as per the preferred country.</a></li>
+<li><a href="#sec-18">18. Function <code>addClickevents()</code> to add click events to the annolet elements.</a></li>
+<li><a href="#sec-19">19. Function to invoke the following functions when the page loads.</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Function <code>annoletContainer()</code> to create a annolet container</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">annoletContainer</span>(){
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">appending a div(annolet container) to body element of a webpage.</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">body</span> = document.getElementsByTagName(<span style="font-style: italic;">'body'</span>)[0];
+    container = document.createElement(<span style="font-style: italic;">'div'</span>);
+    container.id = <span style="font-style: italic;">'annolet-container'</span>;
+    body.appendChild(container);
+
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">appending a CSS stylesheet to head element of a webpage, which is used to stylize the annolet container.</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">linktag</span> = document.createElement(<span style="font-style: italic;">'link'</span>);
+    linktag.rel = <span style="font-style: italic;">"stylesheet"</span>;
+    linktag.type = <span style="font-style: italic;">"text/css"</span>;
+    linktag.href = <span style="font-style: italic;">"https://cdn.rawgit.com/ren-admin/pgxfrm-bookmarklet/5789c576/css/pgxfrm-annolet.css"</span>; 
+    document.getElementsByTagName(<span style="font-style: italic;">'head'</span>)[0].appendChild(linktag);
+
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">injecting html code</span>
+    container.innerHTML = <span style="font-style: italic;">"&lt;h4 id='annolet-header'&gt;Renarration&lt;/h4&gt;"</span>+
+    <span style="font-style: italic;">"&lt;ul id='annolet-tools-menu' &gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item' style='position:relative;top:-25px'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='disable-css' class='annolet-menu-sub-item' &gt;No CSS&lt;/button&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item' style='position:relative;top:-25px'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='zapper' class='annolet-menu-sub-item' &gt;Zapper&lt;/button&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item' style='position:relative;top:-25px'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='modify-content' class='annolet-menu-sub-item' &gt;Modify Content&lt;/button&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item' style='position:relative;top:-25px'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='highlighter-btn' class='annolet-menu-sub-item' &gt;Highlighter&lt;/button&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item' style='position:relative;top:-25px'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='phonetics-btn' class='annolet-menu-sub-item' &gt;Phonetics&lt;/button&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='trans-text' class='annolet-menu-sub-item' &gt;Translate Text&lt;/button&gt;"</span>+<span style="font-style: italic;">"&lt;br&gt;"</span>+
+            <span style="font-style: italic;">"&lt;select class='select-tools-menu' id='select-from-lang'&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='en' &gt;English&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='hi' &gt;Hindi&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='te' &gt;Telugu&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ta' &gt;Tamil&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ml' &gt;Malayalam&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ja' &gt;Japanese&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='zh' &gt;Chinese&lt;/option&gt;"</span>+
+            <span style="font-style: italic;">"&lt;/select&gt;"</span>+
+            <span style="font-style: italic;">"&lt;select class='select-tools-menu' id='select-to-lang'&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='zh' &gt;Chinese&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ja' &gt;Japanese&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ml' &gt;Malayalam&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ta' &gt;Tamil&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='te' &gt;Telugu&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='hi' &gt;Hindi&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='en' &gt;English&lt;/option&gt;"</span>+
+            <span style="font-style: italic;">"&lt;/select&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='change-theme' class='annolet-menu-sub-item'&gt;Switch CSS&lt;/button&gt;"</span>+<span style="font-style: italic;">"&lt;br&gt;"</span>+
+            <span style="font-style: italic;">"&lt;select class='select-tools-menu' id='select-theme'&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='switch1' &gt;Theme1&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='switch2' &gt;Theme2&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='switch3' &gt;Theme3&lt;/option&gt;"</span>+
+            <span style="font-style: italic;">"&lt;/select&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='change-content' class='annolet-menu-sub-item' &gt;Page Stripper&lt;/button&gt;"</span>+<span style="font-style: italic;">"&lt;br&gt;"</span>+
+            <span style="font-style: italic;">"&lt;select class='select-tools-menu' id='select-content'&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='show-links' &gt;Show Links&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='show-text' &gt;Show Text&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='show-images' &gt;Show Images&lt;/option&gt;"</span>+
+            <span style="font-style: italic;">"&lt;/select&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='change-font' class='annolet-menu-sub-item' &gt;Visibility&lt;/button&gt;"</span>+<span style="font-style: italic;">"&lt;br&gt;"</span>+
+            <span style="font-style: italic;">"&lt;select class='select-tools-menu' id='select-font'&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='increase-font' &gt;Increase Font&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='decrease-font' &gt;Decrease Font&lt;/option&gt;"</span>+
+            <span style="font-style: italic;">"&lt;/select&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='change-currency' class='annolet-menu-sub-item' &gt;Convert Currency&lt;/button&gt;"</span>+<span style="font-style: italic;">"&lt;br&gt;"</span>+
+            <span style="font-style: italic;">"&lt;select class='select-tools-menu' id='select-from-currency'&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='USD' &gt;USD&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='INR' &gt;INR&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='EUR' &gt;EUR&lt;/option&gt;"</span>+
+            <span style="font-style: italic;">"&lt;/select&gt;"</span>+
+            <span style="font-style: italic;">"&lt;select class='select-tools-menu' id='select-to-currency'&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='INR' &gt;INR&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='USD' &gt;USD&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='EUR' &gt;EUR&lt;/option&gt;"</span>+
+            <span style="font-style: italic;">"&lt;/select&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='change-measurement' class='annolet-menu-sub-item' &gt;Convert Measurements&lt;/button&gt;"</span>+<span style="font-style: italic;">"&lt;br&gt;"</span>+
+            <span style="font-style: italic;">"&lt;select class='select-tools-menu' id='select-from-measure'&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='km'&gt;kilometers&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='mi'&gt;Miles&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ft'&gt;foot&lt;/option&gt;"</span>+
+            <span style="font-style: italic;">"&lt;/select&gt;"</span>+
+            <span style="font-style: italic;">"&lt;select class='select-tools-menu' id='select-to-measure'&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='mi'&gt;Miles&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='km'&gt;kilometers&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ft'&gt;foot&lt;/option&gt;"</span>+
+            <span style="font-style: italic;">"&lt;/select&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='change-num-sys' class='annolet-menu-sub-item' &gt;Convert Num sys&lt;/button&gt;"</span>+<span style="font-style: italic;">"&lt;br&gt;"</span>+
+            <span style="font-style: italic;">"&lt;select class='select-tools-menu' id='select-num-sys'&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='en-IN' &gt;Indian&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='en-US' &gt;US&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='en-GB'&gt;British&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ko-KR'&gt;Korean&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ar-EG'&gt;Arabic&lt;/option&gt;"</span>+
+            <span style="font-style: italic;">"&lt;/select&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+        <span style="font-style: italic;">"&lt;li class='annolet-menu-item'&gt;"</span>+
+            <span style="font-style: italic;">"&lt;button id='change-date-format' class='annolet-menu-sub-item' &gt;Date Format&lt;/button&gt;"</span>+<span style="font-style: italic;">"&lt;br&gt;"</span>+
+            <span style="font-style: italic;">"&lt;select class='select-tools-menu' id='select-date-format'&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='en-IN' &gt;Indian&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='en-US' &gt;US&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='en-GB'&gt;British&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ko-KR'&gt;Korean&lt;/option&gt;"</span>+
+                <span style="font-style: italic;">"&lt;option value='ar-EG'&gt;Arabic&lt;/option&gt;"</span>+
+            <span style="font-style: italic;">"&lt;/select&gt;"</span>+
+        <span style="font-style: italic;">"&lt;/li&gt;"</span>+
+    <span style="font-style: italic;">"&lt;/ul&gt;"</span>;
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Function <code>disableLinks()</code> to disable all links on a webpage.</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">disableLinks</span>(){
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Disable all links</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">anchors</span> = document.getElementsByTagName(<span style="font-style: italic;">"a"</span>);
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; anchors.length; i++) {
+        anchors[i].onclick = <span style="font-weight: bold;">function</span>() {<span style="font-weight: bold;">return</span>(<span style="font-weight: bold; text-decoration: underline;">false</span>);};
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Function <code>disableCss()</code> disable the css of a web page.</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">disableCss</span>(){
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">styleSheets</span> = document.styleSheets;
+    <span style="font-weight: bold;">for</span> ( <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span>=0; i&lt;styleSheets.length; i++) {
+        <span style="font-weight: bold;">if</span>(styleSheets[i].href == <span style="font-style: italic;">"https://cdn.rawgit.com/ren-admin/pgxfrm-bookmarklet/5789c576/css/pgxfrm-annolet.css"</span>){
+           styleSheets[i].disabled = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+        }
+        <span style="font-weight: bold;">else</span>{
+            styleSheets[i].disabled = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+        }
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Function <code>ZapPer()</code> to erase the unwanted content on a webpage.</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span>  <span style="font-weight: bold;">Zapper</span>(){
+    alert(<span style="font-style: italic;">"Remove the content by clicking anywhere on the document"</span>);
+    $(<span style="font-style: italic;">"body"</span>).click(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">event</span>){
+        console.log(event.target);
+        targetElem= event.target;
+        <span style="font-weight: bold;">if</span>(targetElem.id == <span style="font-style: italic;">"annolet-container"</span>||targetElem.id ==<span style="font-style: italic;">"zapper"</span>||targetElem.id ==<span style="font-style: italic;">"annolet-header"</span>||targetElem.id ==<span style="font-style: italic;">"annolet-menu"</span>||targetElem.className == <span style="font-style: italic;">"annolet-menu-item"</span>){
+            targetElem.style.visibility=<span style="font-style: italic;">"visible"</span>;
+        }
+        <span style="font-weight: bold;">else</span>{
+            targetElem.style.visibility=<span style="font-style: italic;">"hidden"</span>;
+        }
+    });
+
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Function <code>modifyContent()</code> to modify the content on a web page.</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">modifyContent</span>() {
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">sets attributes to all the elements in the web page.</span>
+    document.getElementsByTagName(<span style="font-style: italic;">'body'</span>)[0].setAttribute(<span style="font-style: italic;">'contenteditable'</span>, <span style="font-weight: bold; text-decoration: underline;">true</span>);
+    document.getElementsByTagName(<span style="font-style: italic;">'body'</span>)[0].setAttribute(<span style="font-style: italic;">'title'</span>, <span style="font-style: italic;">'Edit Content'</span>);
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Function <code>highlightContent()</code> to highlight selected text on a web page.</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">highlightContent</span>() {
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">userSelection</span> = window.getSelection();
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; userSelection.rangeCount; i++) {
+        highlightRange(userSelection.getRangeAt(i));
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Function <code>highlightRange(range)</code> for highlighting the selected text.</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">highlightRange</span>(<span style="font-weight: bold; font-style: italic;">range</span>) {
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">newNode</span> = document.createElement(<span style="font-style: italic;">"span"</span>);
+    newNode.setAttribute(
+       <span style="font-style: italic;">"style"</span>,
+       <span style="font-style: italic;">"background-color: yellow; display: inline;"</span>
+    );
+    range.surroundContents(newNode);
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Function <code>phoneticsTrans()</code> to translate the selected text to phonetics.</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">phoneticsTrans</span>(){
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">url</span> = <span style="font-style: italic;">"//localhost:5000/phonetic-trans"</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">xhr</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">XMLHttpRequest</span>();
+    <span style="font-weight: bold;">if</span> (window.getSelection) 
+    {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_text</span>= window.getSelection().toString();
+    } 
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (document.selection &amp;&amp; document.selection.type != <span style="font-style: italic;">"Control"</span>) {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_text</span> = document.selection.createRange().text;
+    }
+    xhr.open(<span style="font-style: italic;">"POST"</span>,url,<span style="font-weight: bold; text-decoration: underline;">true</span>);
+    xhr.setRequestHeader(<span style="font-style: italic;">"Access-Control-Allow-Origin"</span>, <span style="font-style: italic;">"*"</span>);
+    xhr.setRequestHeader(<span style="font-style: italic;">"Content-Type"</span>, <span style="font-style: italic;">"application/json; charset=UTF-8"</span>);
+    xhr.send(JSON.stringify({<span style="font-style: italic;">"sentence"</span>:selected_text}));
+    xhr.onreadystatechange = <span style="font-weight: bold;">function</span>() {
+        <span style="font-weight: bold;">if</span> (<span style="font-weight: bold; text-decoration: underline;">this</span>.readyState==4 &amp;&amp; <span style="font-weight: bold; text-decoration: underline;">this</span>.status==200) {
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">res</span> = <span style="font-weight: bold; text-decoration: underline;">this</span>.responseText;
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">parent</span> = $(window.getSelection().focusNode.parentElement);
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">oldHtml</span> = parent.html();
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">newHtml</span> = oldHtml.replace(selected_text, <span style="font-style: italic;">"&lt;span class='highlight' style='color:green'&gt;"</span>+res+<span style="font-style: italic;">"&lt;/span&gt;"</span>);
+            parent.html( newHtml );
+        }
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Function <code>translateText()</code> to translate the selected text to an other language.</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">translateText</span>(){
+    <span style="font-weight: bold;">if</span> (window.getSelection) 
+    {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_text</span>= window.getSelection().toString();
+    } 
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (document.selection &amp;&amp; document.selection.type != <span style="font-style: italic;">"Control"</span>) {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_text</span> = document.selection.createRange().text;
+    }
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">from</span> = document.getElementById(<span style="font-style: italic;">"select-from-lang"</span>).value;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">to</span> = document.getElementById(<span style="font-style: italic;">"select-to-lang"</span>).value;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">xhr</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">XMLHttpRequest</span>();
+    xhr.open(<span style="font-style: italic;">"POST"</span>, <span style="font-style: italic;">"//localhost:5000/language-translive"</span>, <span style="font-weight: bold; text-decoration: underline;">true</span>); 
+    xhr.setRequestHeader(<span style="font-style: italic;">"Access-Control-Allow-Origin"</span>, <span style="font-style: italic;">"*"</span>);
+    xhr.setRequestHeader(<span style="font-style: italic;">"Content-Type"</span>, <span style="font-style: italic;">"application/json; charset=UTF-8"</span>);
+    xhr.send(JSON.stringify({<span style="font-style: italic;">"sentence"</span>:selected_text,<span style="font-style: italic;">"from-language"</span>:from,<span style="font-style: italic;">"to-language"</span>:to}));
+    xhr.onreadystatechange = processRequest;
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">processRequest</span>(<span style="font-weight: bold; font-style: italic;">e</span>)
+    {
+        <span style="font-weight: bold;">if</span> (xhr.readyState == 4)
+        {
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">language_trans</span> = xhr.responseText;
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">parent</span> = $(window.getSelection().focusNode.parentElement);
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">oldHtml</span> = parent.html();
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">newHtml</span> = oldHtml.replace(selected_text, <span style="font-style: italic;">"&lt;span class='highlight' style='color:green'&gt;"</span>+language_trans+<span style="font-style: italic;">"&lt;/span&gt;"</span>);
+            parent.html( newHtml );
+        }
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> Function <code>alternateStylesheets()</code> to create alternate stylesheets, which will be used to change the theme of a web page.</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">alternateStylesheets</span>(){
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">appending a CSS alternate stylesheets to head element of a webpage.</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span>= 0;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">style_sheets</span> = 3; 
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">css_themes</span> =[<span style="font-style: italic;">"https://cdn.rawgit.com/ren-admin/pgxfrm-bookmarklet/eea1844b/css/switch1.css"</span>, 
+    <span style="font-style: italic;">"https://cdn.rawgit.com/ren-admin/pgxfrm-bookmarklet/eea1844b/css/switch2.css"</span>, 
+    <span style="font-style: italic;">"https://cdn.rawgit.com/ren-admin/pgxfrm-bookmarklet/eea1844b/css/switch3.css"</span>];
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">link_title</span> =[<span style="font-style: italic;">'switch1'</span>, <span style="font-style: italic;">'switch2'</span>, <span style="font-style: italic;">'switch3'</span>];
+
+    <span style="font-weight: bold;">for</span>(i=0; i&lt;style_sheets; i++){
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">linktag</span> = document.createElement(<span style="font-style: italic;">'link'</span>);
+        linktag.rel  = <span style="font-style: italic;">'alternate stylesheet'</span>;
+        linktag.type = <span style="font-style: italic;">'text/css'</span>;
+        linktag.href = css_themes[i];
+        linktag.title= link_title[i];
+        head  = document.getElementsByTagName(<span style="font-style: italic;">'head'</span>)[0];
+        head.appendChild(linktag);
+    }
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_theme</span> = document.getElementById(<span style="font-style: italic;">"select-theme"</span>).value;
+    switchStyle(selected_theme)
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> Function <code>switchStyle(css_title)</code> to switch the theme of a web page.</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">switchStyle</span>(<span style="font-weight: bold; font-style: italic;">css_title</span>)
+{   
+   <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span>;
+   <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">linktag</span> = document.getElementsByTagName(<span style="font-style: italic;">"link"</span>);
+   <span style="font-weight: bold;">for</span> (i = 0; i &lt; linktag.length; i++ ) {
+        <span style="font-weight: bold;">if</span> ((linktag[i].rel.indexOf( <span style="font-style: italic;">"stylesheet"</span> ) != -1) &amp;&amp;linktag[i].title) {
+            linktag[i].disabled = <span style="font-weight: bold; text-decoration: underline;">true</span> ;
+            <span style="font-weight: bold;">if</span> (linktag[i].title == css_title) {
+                linktag[i].disabled = <span style="font-weight: bold; text-decoration: underline;">false</span> ;
+            }
+        }
+   }
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> Function <code>showContent()</code> to display the selected content on the web page and rest of the content is made hidden.</h2>
+<div class="outline-text-2" id="text-12">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">showContent</span>(){
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">all</span> = document.getElementsByTagName(<span style="font-style: italic;">"*"</span>);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_content</span> = document.getElementById(<span style="font-style: italic;">"select-content"</span>).value;
+    <span style="font-weight: bold;">if</span>(selected_content == <span style="font-style: italic;">'show-links'</span>){
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span>=0, <span style="font-weight: bold; font-style: italic;">max</span>=all.length; i &lt; max; i++) {
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">href_attribute</span> = all[i].hasAttribute(<span style="font-style: italic;">"href"</span>);
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">src_attribute</span> = all[i].hasAttribute(<span style="font-style: italic;">"src"</span>);
+            <span style="font-weight: bold;">if</span>(href_attribute == <span style="font-weight: bold; text-decoration: underline;">true</span> || src_attribute == <span style="font-weight: bold; text-decoration: underline;">true</span>){
+                all[i].style.visibility = <span style="font-style: italic;">'visible'</span>;
+            }
+            <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span>(href_attribute == <span style="font-weight: bold; text-decoration: underline;">false</span> &amp;&amp; src_attribute == <span style="font-weight: bold; text-decoration: underline;">false</span>){
+                all[i].style.visibility = <span style="font-style: italic;">'hidden'</span>;
+            }
+        }
+    }
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span>(selected_content == <span style="font-style: italic;">'show-text'</span>) {
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span>=0, <span style="font-weight: bold; font-style: italic;">max</span>=all.length; i &lt; max; i++) {
+            <span style="font-weight: bold;">if</span>(all[i].innerHTML){
+                all[i].style.visibility = <span style="font-style: italic;">'visible'</span>;
+            }
+            <span style="font-weight: bold;">else</span>{
+                all[i].style.visibility = <span style="font-style: italic;">'hidden'</span>;
+            }
+        }
+    }
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span>(selected_content == <span style="font-style: italic;">'show-images'</span>) {
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span>=0, <span style="font-weight: bold; font-style: italic;">max</span>=all.length; i &lt; max; i++) {
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">src_attribute</span> = all[i].hasAttribute(<span style="font-style: italic;">"src"</span>);
+            <span style="font-weight: bold;">if</span>(src_attribute == <span style="font-weight: bold; text-decoration: underline;">false</span>){
+                all[i].style.visibility = <span style="font-style: italic;">'hidden'</span>;
+            }
+            <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span>(src_attribute == <span style="font-weight: bold; text-decoration: underline;">true</span>){
+                all[i].style.visibility = <span style="font-style: italic;">'visible'</span>;
+            }
+        }
+    }
+
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">get the menu bar id </span>
+    document.getElementById(<span style="font-style: italic;">'annolet-container'</span>).style.visibility=<span style="font-style: italic;">'visible'</span>;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">annolet_elems</span> = document.getElementById(<span style="font-style: italic;">'annolet-container'</span>).children;
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">This will make all children elements of div visible. </span>
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; annolet_elems.length; i++){
+        annolet_elems[i].style.visibility = <span style="font-style: italic;">'visible'</span>;
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> Function <code>changeFont()</code> to increase/decrease the font size of the content.</h2>
+<div class="outline-text-2" id="text-13">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">changeFont</span>(){
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">fontSize</span> = parseInt($(<span style="font-style: italic;">'body'</span>).css(<span style="font-style: italic;">'font-size'</span>),10);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_font</span> = document.getElementById(<span style="font-style: italic;">"select-font"</span>).value;
+    <span style="font-weight: bold;">if</span>(selected_font == <span style="font-style: italic;">'increase-font'</span>){
+        fontSize +=1.5;
+        $(<span style="font-style: italic;">'body'</span>).css(<span style="font-style: italic;">'font-size'</span>, fontSize+<span style="font-style: italic;">'px'</span>);
+    }
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span>(selected_font == <span style="font-style: italic;">'decrease-font'</span>){
+        fontSize -=1;
+        $(<span style="font-style: italic;">'body'</span>).css(<span style="font-style: italic;">'font-size'</span>, fontSize+<span style="font-style: italic;">'px'</span>);
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14"><span class="section-number-2">14</span> Function <code>convertCurrency()</code> to convert the currency</h2>
+<div class="outline-text-2" id="text-14">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">convertCurrency</span>(){
+    <span style="font-weight: bold;">if</span> (window.getSelection) 
+    {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_text</span> = window.getSelection().toString();
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">remove_splchar</span> =  selected_text.replace(<span style="font-style: italic;">/\,/</span>g,<span style="font-style: italic;">""</span>);
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">cur_amount</span> =  parseFloat(remove_splchar);
+    } 
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (document.selection &amp;&amp; document.selection.type != <span style="font-style: italic;">"Control"</span>) {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_text</span> = document.selection.createRange().text;
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">remove_splchar</span> =  selected_text.replace(<span style="font-style: italic;">/\,/</span>g,<span style="font-style: italic;">""</span>);
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">cur_amount</span> =  parseFloat(remove_splchar);
+    }
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">from_cur</span> = document.getElementById(<span style="font-style: italic;">'select-from-currency'</span>).value;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">to_cur</span> = document.getElementById(<span style="font-style: italic;">'select-to-currency'</span>).value;
+
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">url</span> = <span style="font-style: italic;">"//localhost:5000/currency-conversion"</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">xhr</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">XMLHttpRequest</span>();
+    xhr.open(<span style="font-style: italic;">"POST"</span>, url, <span style="font-weight: bold; text-decoration: underline;">true</span>);
+    xhr.setRequestHeader(<span style="font-style: italic;">"Access-Control-Allow-Origin"</span>, <span style="font-style: italic;">"*"</span>);
+    xhr.setRequestHeader(<span style="font-style: italic;">"Content-Type"</span>, <span style="font-style: italic;">"application/json; charset=UTF-8"</span>);
+    xhr.send(JSON.stringify({ <span style="font-style: italic;">"cur_amount"</span>:cur_amount, <span style="font-style: italic;">"from_cur"</span>:from_cur, <span style="font-style: italic;">"to_cur"</span>:to_cur }));
+    xhr.onreadystatechange = processRequest;
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">processRequest</span>(<span style="font-weight: bold; font-style: italic;">e</span>)
+    {
+        <span style="font-weight: bold;">if</span> (xhr.readyState == 4)
+        {
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">cur_res</span> = xhr.responseText;
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">parent</span> = $(window.getSelection().focusNode.parentElement);
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">oldHtml</span> = parent.html();
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">newHtml</span> = oldHtml.replace(selected_text, <span style="font-style: italic;">"&lt;span class='highlight' style='color:green'&gt;"</span>+cur_res+<span style="font-style: italic;">"&lt;/span&gt;"</span>);
+            parent.html( newHtml );
+        }
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-15" class="outline-2">
+<h2 id="sec-15"><span class="section-number-2">15</span> Function <code>changeMeasurement()</code> to convert units of measurements</h2>
+<div class="outline-text-2" id="text-15">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">changeMeasurement</span>() {
+   <span style="font-weight: bold;">if</span> (window.getSelection) 
+    {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_text</span> = window.getSelection().toString();
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">remove_splchar</span> =  selected_text.replace(<span style="font-style: italic;">/\,/</span>g,<span style="font-style: italic;">""</span>);
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">measurement_num</span> =  parseFloat(remove_splchar);
+    } 
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (document.selection &amp;&amp; document.selection.type != <span style="font-style: italic;">"Control"</span>) {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_text</span> = document.selection.createRange().text;
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">remove_splchar</span> =  selected_text.replace(<span style="font-style: italic;">/\,/</span>g,<span style="font-style: italic;">""</span>);
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">measurement_num</span> =  parseFloat(remove_splchar);
+    }
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">from_measure</span> = document.getElementById(<span style="font-style: italic;">'select-from-measure'</span>).value;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">to_measure</span> = document.getElementById(<span style="font-style: italic;">'select-to-measure'</span>).value;
+
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">url</span> = <span style="font-style: italic;">"//localhost:5000/measurement-conversion"</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">xhr</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">XMLHttpRequest</span>();
+    xhr.open(<span style="font-style: italic;">"POST"</span>, url, <span style="font-weight: bold; text-decoration: underline;">true</span>);
+    xhr.setRequestHeader(<span style="font-style: italic;">"Access-Control-Allow-Origin"</span>, <span style="font-style: italic;">"*"</span>);
+    xhr.setRequestHeader(<span style="font-style: italic;">"Content-Type"</span>, <span style="font-style: italic;">"application/json; charset=UTF-8"</span>);
+    xhr.send(JSON.stringify({ <span style="font-style: italic;">"measurement_num"</span>:measurement_num, <span style="font-style: italic;">"from_measure"</span>:from_measure, <span style="font-style: italic;">"to_measure"</span>:to_measure }));
+    xhr.onreadystatechange = processRequest;
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">processRequest</span>(<span style="font-weight: bold; font-style: italic;">e</span>)
+    {
+        <span style="font-weight: bold;">if</span> (xhr.readyState == 4)
+        {
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">measurement_res</span> = xhr.responseText;
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">parent</span> = $(window.getSelection().focusNode.parentElement);
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">oldHtml</span> = parent.html();
+            <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">newHtml</span> = oldHtml.replace(selected_text, <span style="font-style: italic;">"&lt;span class='highlight' style='color:green'&gt;"</span>+measurement_res+<span style="font-style: italic;">"&lt;/span&gt;"</span>);
+            parent.html( newHtml );
+        }
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-16" class="outline-2">
+<h2 id="sec-16"><span class="section-number-2">16</span> Function <code>convertNumsys()</code> to convert the number in preferred number system.</h2>
+<div class="outline-text-2" id="text-16">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">convertNumsys</span>(){
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_numsys</span> = document.getElementById(<span style="font-style: italic;">"select-num-sys"</span>).value;
+    <span style="font-weight: bold;">if</span> (window.getSelection) 
+    {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">number</span> = window.getSelection().toString();
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">remove_splchar</span> =  number.replace(<span style="font-style: italic;">/\,/</span>g,<span style="font-style: italic;">""</span>);
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_num</span> = parseInt(remove_splchar);
+    } 
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (document.selection &amp;&amp; document.selection.type != <span style="font-style: italic;">"Control"</span>) {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">number</span> = document.selection.createRange().text;
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">remove_splchar</span> =  number.replace(<span style="font-style: italic;">/\,/</span>g,<span style="font-style: italic;">""</span>);
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_num</span> = parseInt(remove_splchar);
+    }
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">converted_num</span> = selected_num.toLocaleString(selected_numsys);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">parent</span> = $(window.getSelection().focusNode.parentElement);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">oldHtml</span> = parent.html();
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">newHtml</span> = oldHtml.replace(number, <span style="font-style: italic;">"&lt;span class='highlight' style='color:green'&gt;"</span>+converted_num+<span style="font-style: italic;">"&lt;/span&gt;"</span>);
+    parent.html( newHtml );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-17" class="outline-2">
+<h2 id="sec-17"><span class="section-number-2">17</span> Function <code>formatDate()</code> to format the date as per the preferred country.</h2>
+<div class="outline-text-2" id="text-17">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">formatDate</span>(){
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_format</span> = document.getElementById(<span style="font-style: italic;">"select-date-format"</span>).value;
+    <span style="font-weight: bold;">if</span> (window.getSelection) 
+    {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_text</span> = window.getSelection().toString();
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_date</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Date</span>(selected_text);
+    } 
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (document.selection &amp;&amp; document.selection.type != <span style="font-style: italic;">"Control"</span>) {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_text</span> = document.selection.createRange().text;
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">selected_date</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Date</span>(selected_text);
+    }
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">formated_date</span> = selected_date.toLocaleDateString(selected_format);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">parent</span> = $(window.getSelection().focusNode.parentElement);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">oldHtml</span> = parent.html();
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">newHtml</span> = oldHtml.replace(selected_text, <span style="font-style: italic;">"&lt;span class='highlight' style='color:green'&gt;"</span>+formated_date+<span style="font-style: italic;">"&lt;/span&gt;"</span>);
+    parent.html( newHtml );
+
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-18" class="outline-2">
+<h2 id="sec-18"><span class="section-number-2">18</span> Function <code>addClickevents()</code> to add click events to the annolet elements.</h2>
+<div class="outline-text-2" id="text-18">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">addClickevents</span>(){
+    document.getElementById(<span style="font-style: italic;">'disable-css'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        disableCss()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'zapper'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        Zapper()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'modify-content'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        modifyContent()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'highlighter-btn'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        highlightContent()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'phonetics-btn'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">event</span>) {
+        phoneticsTrans()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'trans-text'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        translateText()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'change-theme'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        alternateStylesheets()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'change-content'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        showContent()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'change-font'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        changeFont()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'change-currency'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        convertCurrency()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'change-num-sys'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        convertNumsys()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'change-date-format'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        formatDate()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+    document.getElementById(<span style="font-style: italic;">'change-measurement'</span>).addEventListener(<span style="font-style: italic;">'click'</span>, <span style="font-weight: bold;">function</span>() {
+        changeMeasurement()
+    }, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-19" class="outline-2">
+<h2 id="sec-19"><span class="section-number-2">19</span> Function to invoke the following functions when the page loads.</h2>
+<div class="outline-text-2" id="text-19">
+<div class="org-src-container">
+
+<pre class="src src-js">window.onload = <span style="font-weight: bold;">function</span>() {
+    annoletContainer()
+    disableLinks()
+    addClickevents()
+};
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">[2017-06-17 Fri]</span></span></p>
+<p class="author">Author: VLEAD</p>
+<p class="date">Created: 2017-08-15 Tue 16:27</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
