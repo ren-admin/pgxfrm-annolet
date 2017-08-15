@@ -8,7 +8,7 @@
 #+LATEX: Literal LaTeX code for export
 
 * Function =annoletContainer()= to create a annolet container
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function annoletContainer(){
     //appending a div(annolet container) to body element of a webpage.
@@ -67,7 +67,7 @@ function annoletContainer(){
 
 * Function =addClickevents()= to add click events to the annolet elements.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function addClickevents(){
     document.getElementById('qa-category').addEventListener('click', function() {
@@ -93,7 +93,7 @@ function addClickevents(){
 
 * Function to invoke the following functions when the page loads.
 
-#+BEGIN_SRC js :tangle ../../code/annolet/pagexform-annolet.js :eval no
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 window.onload = function() {
     annoletContainer()
