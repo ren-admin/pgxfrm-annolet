@@ -1,4 +1,4 @@
-<h4 id='annolet-header'>Semantic Overlay</h4>
+<h1 id='annolet-header'>Semantic Overlay</h1>
     <ul id='annolet-tools-menu' >
         <li class='annolet-menu-item'>
             <div style='position:relative;top:19px;display:inline-block;'>
