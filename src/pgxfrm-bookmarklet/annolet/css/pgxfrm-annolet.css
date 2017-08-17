@@ -10,6 +10,7 @@ body{
     z-index: 999999999999999999999999;
     position: fixed !important;
     box-shadow:  0 -17px 52px 0 !important;
+    padding: 0px 0px 40px !important;
 }
 
 #annolet-header{
@@ -30,6 +31,7 @@ body{
     font-weight: bold !important;
     display: inline-block !important;
     text-align: center !important;
+    font-size: 302% !important;
 }
 
 .annolet-menu-item{
@@ -51,7 +53,7 @@ body{
     text-shadow: inherit !important;
     border-radius: inherit !important;
     text-transform: uppercase !important;
-    padding: 2px 3px;
+    padding: 16px 83px !important;
     letter-spacing: inherit;
 }
 
