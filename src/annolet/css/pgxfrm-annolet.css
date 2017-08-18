@@ -63,7 +63,7 @@ body{
     border-color: white !important;
 }
 
-.select-tools-menu-1, .select-tools-menu-2, .select-tools-menu-3{
+.select-tools-menu-0, .select-tools-menu-1, .select-tools-menu-2{
     display: inline-block !important;
     background-color: #fff !important;
     color: black !important;
@@ -72,7 +72,7 @@ body{
     margin-left: 12%;
 }
 
-.select-tools-menu-1, .select-tools-menu-2, .select-tools-menu-3:hover{
+.select-tools-menu-0, .select-tools-menu-1, .select-tools-menu-2:hover{
     background: black !important;
     color: white !important;
     border-color: white !important;
