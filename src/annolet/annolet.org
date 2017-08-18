@@ -27,7 +27,7 @@ function annoletContainer(){
     var linktag = document.createElement('link');
     linktag.rel = "stylesheet";
     linktag.type = "text/css";
-    linktag.href = "https://rawgit.com/ren-admin/pgxfrm-annolet/ea8b94cae21c9c226d0fc9ed2af88ae8e500cf41/src/pgxfrm-bookmarklet/annolet/css/pgxfrm-annolet.css"; 
+    linktag.href = "https://rawgit.com/ren-admin/pgxfrm-annolet/semantic-overlay/src/pgxfrm-bookmarklet/annolet/css/pgxfrm-annolet.css"; 
     document.getElementsByTagName('head')[0].appendChild(linktag);
 
     // injecting html code
@@ -54,12 +54,10 @@ function getJsondata()
 }
 
 #+END_SRC
-* Function =createMenulist()= creates menulist of the tags by fetching the content from json.
+* Function =createMenulist()= creates menulist of the tags by fetching the content from the json file which is served through rawgit.
 #+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 function createMenulist(result){
-	console.log("inside createTags....");
-	console.log(result);
 	for (var i = 0; i < result.main_menu.length; i++) { 
         var menu =  "<div style='position:relative;top:19px;display:inline-block;'>"+
                 "<button id='category-"+i+"' class='annolet-menu-sub-item'>Tag it..!</button>"+"<br>"+
@@ -72,31 +70,10 @@ function createMenulist(result){
             $('.select-tools-menu-'+i).append('<option value="'+tags[property]+'">'+tags[property]+'</option>')
         }
     }
+    addclickEvents()
 }
 
 #+END_SRC
-* Function =addClickevents()= to add click events to the annolet elements.
-#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
-
-function addclickEvents() {
-    document.getElementById('category-0').addEventListener('click', function() {
-        alert("hello");
-        // var category = json_data.main_menu[i].name;
-        // alert(category);
-        // annotateTag(category);
-    }, false);
-    document.getElementById('category-1').addEventListener('click', function() {
-        var category = json_data.main_menu[i].name;
-        annotateTag(category);
-    }, false);
-    document.getElementById('category-2').addEventListener('click', function() {
-        var category = json_data.main_menu[i].name;
-        annotateTag(category);
-    }, false);
-}    
-
-#+END_SRC
-
 * Function =annotateTag()= to insert tags on the selected content
 #+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
@@ -122,13 +99,32 @@ function annotateTag(markup_category){
 }
 
 #+End_src
+* Function =addClickevents()= to add click events to the annolet elements.
+#+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
+
+function addclickEvents() {
+    document.getElementById('category-0').addEventListener('click', function() {
+        var category = json_data.main_menu[0].name;
+        annotateTag(category);
+    }, false);
+    document.getElementById('category-1').addEventListener('click', function() {
+        var category = json_data.main_menu[1].name;
+        annotateTag(category);
+    }, false);
+    document.getElementById('category-2').addEventListener('click', function() {
+        var category = json_data.main_menu[2].name;
+        annotateTag(category);
+    }, false);
+}      
+
+#+END_SRC
+
 * Function to invoke the following functions when the page loads.
 #+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 window.onload = function() {
     annoletContainer()
     getJsondata()
-    addclickEvents()
 };
 
 #+END_SRC
