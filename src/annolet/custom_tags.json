@@ -1,47 +1,44 @@
 {
-    "categories": [
-	 {
-	    "seq-no": "1",
-	    "name": "qa",
-	    "tags":[
-		 {
-		     "question": "qa-question",
-		     "multiple-choice": "qa-mulchoice",
-		     "correct-answer": "qa-explanation",
-		     "explanation" : "qa-correctans",
-		     "useful-links": "qa-usefullinks"
-		 }
-	     ]
-	 },
+    "main-menu": [
+			 {
+			    "seq-no": "1",
+			    "name": "qa",
+			    "sub-menu": {
+				     "question": "qa-question",
+				     "multiple-choice": "qa-mulchoice",
+				     "correct-answer": "qa-explanation",
+				     "explanation" : "qa-correctans",
+				     "useful-links": "qa-usefullinks"
+				 }
+			     
+			},
 
-	 {
-	    "seq-no": "2",
-	    "name": "pd",
-	    "tags":[
-		  {
-		      "product-name": "pd-productname",
-		      "model": "pd-model",
-		      "price": "pd-price",
-		      "seller": "pd-seller",
-		      "brand": "pd-brand"
-		  }
-             ]
-	 },
-      
-	 {
-	    "seq-no": "3",
-	    "name": "num",
-	    "tags":[
-		  {
-		       "date": "num-data",
-		       "time": "num-time",
-		       "currency": "num-currency",
-		       "distance": "num-distance",
-		       "weight": "num-weight"
-		   }
-             ]
-	 }
-     ]
+			{
+			    "seq-no": "2",
+			    "name": "pd",
+			    "sub-menu": {
+				      "product-name": "pd-productname",
+				      "model": "pd-model",
+				      "price": "pd-price",
+				      "seller": "pd-seller",
+				      "brand": "pd-brand"
+				}
+		 
+			},
+		      
+			{
+			    "seq-no": "3",
+			    "name": "num",
+			    "sub-menu": {
+				       "date": "num-data",
+				       "time": "num-time",
+				       "currency": "num-currency",
+				       "distance": "num-distance",
+				       "weight": "num-weight"
+				}
+		             
+			}
+    ]
 }    
 
 
