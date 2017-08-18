@@ -6,10 +6,10 @@
 	    "tags":[
 		 {
 		     "question": "qa-question",
-		     "explanation": "qa-explanation",
-		     "correctans" : "qa-correctans",
-		     "mulchoice": "qa-mulchoice",
-		     "usefullinks": "qa-usefullinks"
+		     "multiple-choice": "qa-mulchoice"
+		     "correct-answer": "qa-explanation",
+		     "explanation" : "qa-correctans",
+		     "useful-links": "qa-usefullinks"
 		 }
 	     ]
 	 },
@@ -19,7 +19,7 @@
 	    "name": "pd",
 	    "tags":[
 		  {
-		      "productname": "pd-productname";
+		      "product-name": "pd-productname",
 		      "model": "pd-model",
 		      "price": "pd-price",
 		      "seller": "pd-seller",

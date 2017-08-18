@@ -28,17 +28,16 @@ function annoletContainer(){
 }
 
 #+END_SRC
-
+  
 * Function =loadHtml()= to inject html content into the annolet container.
 #+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
   function loadHtml()
   {
-    var html_url = "https://cdn.rawgit.com/sadhanareddy/markup-schema/a66fb7dc/test.txt"; 
+    var html_url = "https://cdn.rawgit.com/ren-admin/pgxfrm-annolet/semantic-overlay/src/pgxfrm-bookmarklet/annolet/html_content.txt"; 
     $.get(html_url, function(data, status) {
     	html_content = data;
     	console.log("Data: " + html_content + "\nStatus: " + status);
-        console.log(html_content);
 	document.getElementById("annolet-container").innerHTML = html_content;
     }); 
   }
@@ -49,11 +48,10 @@ function annoletContainer(){
 
 function getJsondata()
 {
-    var url = "https://cdn.rawgit.com/sadhanareddy/markup-schema/8319b87c/markup_tags.json"; 
+    var url = "https://cdn.rawgit.com/ren-admin/pgxfrm-annolet/semantic-overlay/src/pgxfrm-bookmarklet/annolet/custom_tags.json"; 
     $.get(url, function(data, status) {
     	json_data = data;
     	console.log("Data: " + json_data + "\nStatus: " + status);
-        console.log(json_data);
     });
 }
 
@@ -63,7 +61,15 @@ function getJsondata()
 
 function annotateTag(markup_category) {
     var selected_tag = document.getElementById(markup_category).value;
-    var custom_tag = document.createElement(json_data['categories'][0]['tags'][selected_tag]);
+    if(markup_category == "qa") {
+       var custom_tag = document.createElement(json_data['categories'][0]['tags'][0][selected_tag]);
+    }
+    else if(markup_category == "pd") {
+       var custom_tag = document.createElement(json_data['categories'][1]['tags'][0][selected_tag]);
+    }
+    else if(markup_category == "num") {
+       var custom_tag = document.createElement(json_data['categories'][2]['tags'][0][selected_tag]);
+    }
     if(window.getSelection){
         var userSelection = window.getSelection()
         var userSelection_text = userSelection.toString();
@@ -73,7 +79,7 @@ function annotateTag(markup_category) {
         var userSelection = document.selection.createRange().text;
         custom_tag.textContent = userSelection;
     }      
-    custom_tag.style.color = "green";
+    custom_tag.style.backgroundColor = "yellow";
     var range = userSelection.getRangeAt(0);
     range.deleteContents();
     range.insertNode(custom_tag);
