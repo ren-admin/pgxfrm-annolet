@@ -6,7 +6,7 @@
 	    "tags":[
 		 {
 		     "question": "qa-question",
-		     "multiple-choice": "qa-mulchoice"
+		     "multiple-choice": "qa-mulchoice",
 		     "correct-answer": "qa-explanation",
 		     "explanation" : "qa-correctans",
 		     "useful-links": "qa-usefullinks"
@@ -33,7 +33,7 @@
 	    "name": "num",
 	    "tags":[
 		  {
-		       "data": "num-data",
+		       "date": "num-data",
 		       "time": "num-time",
 		       "currency": "num-currency",
 		       "distance": "num-distance",

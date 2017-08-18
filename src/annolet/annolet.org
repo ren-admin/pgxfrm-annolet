@@ -63,26 +63,31 @@ function annotateTag(markup_category) {
     var selected_tag = document.getElementById(markup_category).value;
     if(markup_category == "qa") {
        var custom_tag = document.createElement(json_data['categories'][0]['tags'][0][selected_tag]);
+       createCustomTag();
     }
     else if(markup_category == "pd") {
        var custom_tag = document.createElement(json_data['categories'][1]['tags'][0][selected_tag]);
+       createCustomTag();
     }
     else if(markup_category == "num") {
-       var custom_tag = document.createElement(json_data['categories'][2]['tags'][0][selected_tag]);
+        var custom_tag = document.createElement(json_data['categories'][2]['tags'][0][selected_tag]);
+        createCustomTag();
     }
-    if(window.getSelection){
-        var userSelection = window.getSelection()
-        var userSelection_text = userSelection.toString();
-        custom_tag.textContent = userSelection_text;
+    function createCustomTag() {
+    	if(window.getSelection){
+          	var userSelection = window.getSelection()
+        	var userSelection_text = userSelection.toString();
+        	custom_tag.textContent = userSelection_text;
+    	}
+   		else if (document.selection && document.selection.type != "Control") {
+        	var userSelection = document.selection.createRange().text;
+        	custom_tag.textContent = userSelection;
+    	}      
+    	custom_tag.style.backgroundColor = "yellow";
+    	var range = userSelection.getRangeAt(0);
+    	range.deleteContents();
+    	range.insertNode(custom_tag);
     }
-    else if (document.selection && document.selection.type != "Control") {
-        var userSelection = document.selection.createRange().text;
-        custom_tag.textContent = userSelection;
-    }      
-    custom_tag.style.backgroundColor = "yellow";
-    var range = userSelection.getRangeAt(0);
-    range.deleteContents();
-    range.insertNode(custom_tag);
 }
 
 #+End_src
@@ -100,14 +105,13 @@ function addclickEvents() {
     }, false);
     document.getElementById('number-category').addEventListener('click', function() {
         var category = json_data["categories"][2]["name"];
-	annotateTag(category);
+        annotateTag(category);
     }, false);
-}
+}  
 
 #+END_SRC
 
 * Function to invoke the following functions when the page loads.
-
 #+BEGIN_SRC js :tangle ../../code/annolet/pgxfrm-annolet.js :eval no
 
 window.onload = function() {
