@@ -10,7 +10,6 @@ body{
     z-index: 999999999999999999999999;
     position: fixed !important;
     box-shadow:  0 -17px 52px 0 !important;
-    padding: 0px 0px 40px !important;
 }
 
 #annolet-header{
@@ -18,6 +17,7 @@ body{
     color: #0d0000 !important;
     font-weight: bold !important;
     font-family: monospace !important;
+    font-size: 215%;
 }
 
 #annolet-tools-menu{
@@ -31,7 +31,7 @@ body{
     font-weight: bold !important;
     display: inline-block !important;
     text-align: center !important;
-    font-size: 302% !important;
+    font-size: 155% !important;
 }
 
 .annolet-menu-item{
@@ -63,15 +63,16 @@ body{
     border-color: white !important;
 }
 
-.select-tools-menu{
+.select-tools-menu-1, .select-tools-menu-2, .select-tools-menu-3{
     display: inline-block !important;
     background-color: #fff !important;
     color: black !important;
     text-align: center !important;
     text-decoration: none !important;
+    margin-left: 12%;
 }
 
-.select-tools-menu:hover{
+.select-tools-menu-1, .select-tools-menu-2, .select-tools-menu-3:hover{
     background: black !important;
     color: white !important;
     border-color: white !important;
