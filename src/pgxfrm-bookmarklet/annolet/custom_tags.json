@@ -30,7 +30,7 @@
 			    "seq_no": "3",
 			    "name": "num",
 			    "sub_menu": {
-				       "date": "num_data",
+				       "date": "num_date",
 				       "time": "num_time",
 				       "currency": "num_currency",
 				       "distance": "num_distance",
