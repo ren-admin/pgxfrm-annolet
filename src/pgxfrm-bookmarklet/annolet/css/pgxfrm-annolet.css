@@ -73,7 +73,7 @@ body{
     margin-left: 12%;
 }
 
-.select-tools-menu-0, .select-tools-menu-1, .select-tools-menu-2:hover{
+.select-tools-menu-0:hover, .select-tools-menu-1:hover, .select-tools-menu-2:hover{
     background: black !important;
     color: white !important;
     border-color: white !important;
