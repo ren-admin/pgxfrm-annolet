@@ -25,20 +25,30 @@ function annoletContainer(){
         "<li class='annolet-menu-item'>"+
         "<br>"+
         "</li>"+
+        "<li class='conversion-menu-item'>"+
+            "<div style='position:relative;top:19px;display:inline-block;'>"+
+               "<button id='conversion' class='conversion-menu-sub-item'>conversion</button>"+"<br>"+
+               "<select id='transformation' class='select-conversion-menu'>"+
+                  "<option value='num'>N</option>"+
+                  "<option value='date'>D</option>"+
+               "</select>"+ 
+            "</div>"+
+        "</li>"+
     "</ul>";
+
 }
 
 function getJsondata()
 {
     var url = "https://rawgit.com/ren-admin/pgxfrm-annolet/semantic-overlay/src/pgxfrm-bookmarklet/annolet/custom_tags.json"; 
     $.get(url, function(data, status) {
-    	json_data = data;
-    	createMenulist(json_data);
+        json_data = data;
+        createMenulist(json_data);
     });
 }
 
 function createMenulist(result){
-	for (var i = 0; i < result.main_menu.length; i++) { 
+    for (var i = 0; i < result.main_menu.length; i++) { 
         var menu =  "<div style='position:relative;top:19px;display:inline-block;'>"+
                 "<button id='category-"+i+"' class='annolet-menu-sub-item'>Tag it..!</button>"+"<br>"+
                 "<select class='select-tools-menu-"+i+"' id='"+json_data.main_menu[i].name+"'>"+
@@ -74,6 +84,33 @@ function annotateTag(markup_category){
     }
 }
 
+function convertNumsys(){
+    var selected_numsys = 'ar-EG';
+    var all = document.body.getElementsByTagName("*");
+    for (var i=0, max=all.length; i < max; i++) {
+        if(all[i].tagName == "NUM_DATE"||all[i].tagName == "NUM_CURRENCY"||all[i].tagName == "PD_PRICE"){
+            var tag_text = all[i].innerHTML;
+            var remove_splchar =  tag_text.replace(/\,/g,"");
+            var selected_text = parseInt(remove_splchar);
+            var converted_num = selected_text.toLocaleString(selected_numsys);
+            all[i].innerHTML=  "<span class='highlight' style='color:green'>"+converted_num+"</span>";
+        }
+    }
+}
+
+function formatDate(){
+    var selected_format = 'ar-EG';
+    var all = document.body.getElementsByTagName("*");
+    for (var i=0, max=all.length; i < max; i++) {
+        if(all[i].tagName == "NUM_DATE"||all[i].tagName == "NUM_CURRENCY"||all[i].tagName == "PD_PRICE"){
+            var tag_text = all[i].innerHTML;
+            var selected_text = new Date(tag_text);
+            var formated_date = selected_text.toLocaleDateString(selected_format)
+            all[i].innerHTML=  "<span class='highlight' style='color:green'>"+formated_date+"</span>";
+        }
+    }
+}
+
 function addclickEvents() {
     document.getElementById('category-0').addEventListener('click', function() {
         var category = json_data.main_menu[0].name;
@@ -87,7 +124,17 @@ function addclickEvents() {
         var category = json_data.main_menu[2].name;
         annotateTag(category);
     }, false);
+    document.getElementById('conversion').addEventListener('click', function() {
+        var transformation_value = document.getElementById('transformation').value;
+        if(transformation_value == 'num'){
+            convertNumsys()
+        }
+        else if(transformation_value == 'date'){
+            formatDate()
+        }
+    }, false);
 }      
+      
 
 window.onload = function() {
     annoletContainer()
